@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Zip Code Search</title>
+  <link href='https://fonts.googleapis.com/css?family=Josefin+Sans' rel='stylesheet' type='text/css'>
+  <!--<link type='text/css' rel="stylesheet" href="style.css">-->
+  <style>
+    body {
+      margin: auto;
+      font-family: 'Josefin Sans', sans-serif;
+      width: 600px;
+      text-align: center;
+      background-color: lightblue;
+    }
+    label {
+      margin: 5px;
+    }
+    input {
+      margin: 5px;
+    }
+    #zip {
+      margin-top: 25px;
+    }
+  </style>
+</head>
+<body>
+<h2>Enter your ZIP Code for City and State Lookup:</h2>
+<fieldset>
+  <legend><h3>ZIP Search</h3></legend>
+  <form action="app.js" name="zip-search">
+    <label for="city">City: </label><input id="city" type="text" name="city" disabled>
+    <label for="state">State: </label><input id="state" type="text" name="state" disabled><br/>
+    <label for="zip">ZIP: </label><input type="text" name="zip" id="zip" placeholder="Enter 5-digit ZIP" maxlength="5" pattern="\d{5}" autofocus="autofocus" required>
+    <input type="submit" value="Submit">
+  </form>
+</fieldset>
+<div id="map"></div>
+<script>
+  var form = document.forms.namedItem("zip-search");
+  form.addEventListener('submit', function(ev) {
+    var xhr;
+    if (window.XMLHttpRequest) {
+      xhr = new XMLHttpRequest();
+    } else {
+      // code for IE6, IE5
+      xhr = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState == 4 && xhr.status == 200) {
+        if (xhr.responseText !== "ZIP Code Not Found") {
+          var cityState = JSON.parse(xhr.responseText);
+          console.log("/cityState:",cityState);
+          //display city & state in disabled input fields
+          document.getElementById("city").value = cityState.place_name;
+          document.getElementById("state").value = cityState.admin_name1;
+          //display map of zip using long/lat values
+          document.getElementById("map").innerHTML = '<iframe width="600" height="450" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?q='+cityState.latitude+','+cityState.longitude+'&hl=es;z=14&amp;output=embed"></iframe><br /><small><a href="https://maps.google.com/maps?q='+cityState.latitude+','+cityState.longitude+'&hl=es;z=14&amp;output=embed" style="color:#0000FF;text-align:left" target="_blank">See map bigger</a></small>';
+        } else {
+          var noZip = xhr.responseText;
+          //display error message
+          document.getElementById("map").innerHTML = '<h3>Unable to display map: ' + noZip + '.</h3>';
+        }
+      }
+    };
+
+    xhr.open("GET", document.getElementById('zip').value, true);
+    xhr.send();
+    ev.preventDefault();
+  }, false);
+</script>
+</body>
+</html>
