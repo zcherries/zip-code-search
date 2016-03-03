@@ -1,6 +1,6 @@
 # Zip Code Search
 
-Navigate to directory in terminal and start server:
+After dowloading repository, navigate to the directory in a terminal window and start the server:
 
 nodemon server.js
 
