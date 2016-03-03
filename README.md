@@ -4,7 +4,7 @@ After dowloading repository, navigate to the directory in a terminal window and 
 
 nodemon server.js
 
-Navigate to [http://localhost:8080/](http://localhost:8080/) in your browser.
+Then, navigate to [http://localhost:8080/](http://localhost:8080/) in your browser to use Zip Code Search.
 
 ## Notes about widgit:
 This widgit searches for a zip code in the database, and then displays the city, state, and loads a map of the location. Zip codes are validated for a 5-digit number. Anything else will not be processed. If the zip code cannot be found, then it will display an error message.
