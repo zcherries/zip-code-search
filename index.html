@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>Zip Code Search</title>
   <link href='https://fonts.googleapis.com/css?family=Josefin+Sans' rel='stylesheet' type='text/css'>
+  <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
   <style>
     body {
       margin: auto;
@@ -28,9 +29,9 @@
 <fieldset>
   <legend><h3>Enter your ZIP Code to view the City, State and Map:</h3></legend>
   <form action="app.js" name="zip-search">
-    <label for="city">City: </label><input id="city" type="text" name="city" disabled>
-    <label for="state">State: </label><input id="state" type="text" name="state" disabled><br/>
-    <label for="zip">ZIP: </label><input type="text" name="zip" id="zip" placeholder="Enter 5-digit ZIP" maxlength="5" pattern="\d{5}" autofocus="autofocus" required>
+    <i class="icon-building"></i> <label for="city">City: </label><input id="city" type="text" name="city" disabled>
+    <i class="icon-map-marker"></i> <label for="state">State: </label><input id="state" type="text" name="state" disabled><br/>
+    <i class="icon-location-arrow"></i> <label for="zip">ZIP: </label><input type="text" name="zip" id="zip" placeholder="Enter 5-digit ZIP" maxlength="5" pattern="\d{5}" autofocus="autofocus" required>
     <input type="submit" value="Submit">
   </form>
 </fieldset>
