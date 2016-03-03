@@ -49,9 +49,6 @@ var handleRequest = function (request, response){
       }
       response.writeHead(200, {'Content-Type': contentTypesByExtention[extname] || 'text/html','Content-Length':data.length});
       response.write(data);
-      //if (zips[zip]) {
-      //  response.send({"zip": zip, "city": zips[zip]["place_name"], "state": zips[zip]["admin_name1"]});
-      //}
       response.end();
     });
   } else {
